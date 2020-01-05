@@ -29,6 +29,8 @@ namespace DutchTreat.Controllers
         {
             ViewBag.Title = "About Us";
 
+            throw new InvalidOperationException();
+
             return View();
         }
     }

@@ -17,18 +17,20 @@ namespace DutchTreat
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsEnvironment("Development"))
+            //if not in dev enviroment, use an exception handler
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
             else
             {
-                //Add Error Page
+               app.UseExceptionHandler("/Error");
             }
 
 
@@ -42,6 +44,8 @@ namespace DutchTreat
                     cfg.MapControllerRoute("Fallback",
                     "{controller}/{action}/{id?}",
                     new { controller = "App", action = "Index" });
+
+                    cfg.MapRazorPages();
                 });
         }
     }
