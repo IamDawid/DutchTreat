@@ -17,6 +17,18 @@ namespace DutchTreat.Controllers
         }
 
 
+        public IActionResult Contact()
+        {
+            ViewBag.Title = "Contact Us";
 
+            return View();
+        }
+
+        public IActionResult About()
+        {
+            ViewBag.Title = "About Us";
+
+            return View();
+        }
     }
 }
