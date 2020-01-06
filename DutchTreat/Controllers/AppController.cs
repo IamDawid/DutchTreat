@@ -20,17 +20,17 @@ namespace DutchTreat.Controllers
         [HttpGet("contact")]
         public IActionResult Contact()
         {
-            ViewBag.Title = "Contact Us";
+            return View();
+        }
 
+        [HttpPost("contact")]
+        public IActionResult Contact(object model)
+        {
             return View();
         }
 
         public IActionResult About()
         {
-            ViewBag.Title = "About Us";
-
-            throw new InvalidOperationException();
-
             return View();
         }
     }
