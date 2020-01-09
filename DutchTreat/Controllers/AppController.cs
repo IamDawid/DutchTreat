@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DutchTreat.Services;
 using DutchTreat.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +13,11 @@ namespace DutchTreat.Controllers
 {
     public class AppController : Controller 
     {
+       private readonly IMailService _mailService;
+       public AppController(IMailService mailService) 
+        {
+            _mailService = mailService;  //saving it privately too so it can be used for methods
+        }
        public IActionResult Index()
         {
             return View();
@@ -30,10 +36,10 @@ namespace DutchTreat.Controllers
             if (ModelState.IsValid)
             {
                 //send the email
-            }
-            else
-            {
-                //show the errors
+                _mailService.SendMessage("david.d.bialy@gmail.com", model.Subject, $"From: {model.Name} - {model.Email}, Message: {model.Message}");
+                ViewBag.UserMessage = "Mail Sent.";
+                ModelState.Clear();
+  
             }
 
             return View();
