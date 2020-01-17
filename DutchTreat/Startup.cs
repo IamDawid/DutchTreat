@@ -34,6 +34,7 @@ namespace DutchTreat
             services.AddTransient<DutchSeeder>();
             services.AddTransient<IMailService, NullMailService>();
             //support for real mail service
+            services.AddScoped<IDutchRepository, DutchRepository>();
             services.AddMvc();
             services.AddControllersWithViews();
             services.AddRazorPages();
