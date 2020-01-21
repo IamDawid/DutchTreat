@@ -34,12 +34,13 @@ namespace DutchTreat.Data
             _logger.LogInformation("GetAllProducts was called");
 
             return _ctx.Products
-            .OrderBy(p => p.Title)
-            .ToList();
+                       .OrderBy(p => p.Title)
+                       .ToList();
             }
        
             catch (Exception ex)
             {
+
             _logger.LogError($"Failed to get all products: {ex}");
             return null;
 
@@ -68,7 +69,8 @@ namespace DutchTreat.Data
 
         public bool SaveChanges()
         {
-            throw new NotImplementedException();
+            _logger.LogInformation("Save Changes was used");
+            return true;
         }
     }
 }
