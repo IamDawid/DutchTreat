@@ -19,6 +19,11 @@ namespace DutchTreat.Data
             _logger = logger;
         }
 
+        public void AddEntity(object model)
+        {
+            _ctx.Add(model);
+        }
+
         public IEnumerable<Order> GetAllOrders()
         {
             return _ctx.Orders
@@ -29,20 +34,20 @@ namespace DutchTreat.Data
         public IEnumerable<Product> GetAllProducts()
         {
             try
-            { 
+            {
 
-            _logger.LogInformation("GetAllProducts was called");
+                _logger.LogInformation("GetAllProducts was called");
 
-            return _ctx.Products
-                       .OrderBy(p => p.Title)
-                       .ToList();
+                return _ctx.Products
+                           .OrderBy(p => p.Title)
+                           .ToList();
             }
-       
+
             catch (Exception ex)
             {
 
-            _logger.LogError($"Failed to get all products: {ex}");
-            return null;
+                _logger.LogError($"Failed to get all products: {ex}");
+                return null;
 
             }
         }
@@ -64,13 +69,10 @@ namespace DutchTreat.Data
 
         public bool SaveAll()
         {
-            return _ctx.SaveChanges() > 0;
-        }
-
-        public bool SaveChanges()
-        {
-            _logger.LogInformation("Save Changes was used");
+            _ctx.SaveChanges();
             return true;
         }
+
+
     }
 }
