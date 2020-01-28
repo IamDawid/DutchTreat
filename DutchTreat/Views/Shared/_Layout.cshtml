@@ -21,6 +21,15 @@
                     <li class="nav-item"><a asp-controller="App" asp-action="Contact" class="nav-link">Contact</a></li>
                     <li class="nav-item"><a asp-controller="App" asp-action="About" class="nav-link">About us</a></li>
                     <li class="nav-item"><a asp-controller="App" asp-action="Shop" class="nav-link">Shop</a></li>
+                    @if (User.Identity.IsAuthenticated)  //checking if the user is logged in
+                    {
+                        <li class="nav-item"><a asp-controller="Account" asp-action="Login" class="nav-link">Logout</a></li>
+                    }
+                    else
+                    {
+                        <li class="nav-item"><a asp-controller="Account" asp-action="Login" class="nav-link">Login</a></li>
+                    }
+
                 </ul>
             </div>
         </nav>
