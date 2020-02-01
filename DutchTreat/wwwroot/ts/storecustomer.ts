@@ -20,5 +20,3 @@
     
 }
 
-//let cust = new StoreCustomer();
-//cust.visits = 10
