@@ -44,7 +44,7 @@ var AppComponent = /** @class */ (function () {
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'the-shop',
-            template: "\n \n    <div style=\"text-align:center\" class=\"content\">\n      <h1>\n        Welcome to {{title}}!\n      </h1>\n   </div>\n    \n  "
+            template: "\n \n      <h1>\n        Welcome to {{title}}!\n      </h1>\n    \n  "
         })
     ], AppComponent);
     return AppComponent;
