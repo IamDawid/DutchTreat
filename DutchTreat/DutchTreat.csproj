@@ -60,8 +60,4 @@
     <TypeScriptCompile Include="wwwroot\ts\storecustomer.ts" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ClientApp\" />
-  </ItemGroup>
-
 </Project>
