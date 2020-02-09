@@ -29,6 +29,14 @@
 
   <ItemGroup>
     <Content Remove="Views\App\Index1.cshtml" />
+    <Content Remove="wwwroot\clientapp\main-es5.js" />
+    <Content Remove="wwwroot\clientapp\main-es5.js.map" />
+    <Content Remove="wwwroot\clientapp\runtime-es5.js" />
+    <Content Remove="wwwroot\clientapp\runtime-es5.js.map" />
+    <Content Remove="wwwroot\clientapp\styles-es5.js" />
+    <Content Remove="wwwroot\clientapp\styles-es5.js.map" />
+    <Content Remove="wwwroot\clientapp\vendor-es5.js" />
+    <Content Remove="wwwroot\clientapp\vendor-es5.js.map" />
     <Content Remove="wwwroot\ts\main.ts" />
     <Content Remove="wwwroot\ts\storecustomer.ts" />
   </ItemGroup>
@@ -38,6 +46,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\clientapp\main-es5.js" />
+    <None Include="wwwroot\clientapp\main-es5.js.map" />
+    <None Include="wwwroot\clientapp\runtime-es5.js" />
+    <None Include="wwwroot\clientapp\runtime-es5.js.map" />
+    <None Include="wwwroot\clientapp\styles-es5.js" />
+    <None Include="wwwroot\clientapp\styles-es5.js.map" />
+    <None Include="wwwroot\clientapp\vendor-es5.js" />
+    <None Include="wwwroot\clientapp\vendor-es5.js.map" />
     <None Include="wwwroot\index.html" />
   </ItemGroup>
 
