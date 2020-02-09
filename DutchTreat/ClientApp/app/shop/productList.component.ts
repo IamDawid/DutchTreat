@@ -1,4 +1,5 @@
 ﻿import { Component } from "@angular/core";
+import { DataService } from '../shared/dataService';
 
 @Component({
     selector: "product-list",
@@ -7,14 +8,11 @@
 })
 
 export class ProductList {
-    public products = [{
-        title: "First Product",
-        price: 19.99
-    }, {
-        title: "Second Product",
-        price: 29.99
-    }, {
-        title: "Third Product",
-        price: 14.99
-    }];
+    constructor(private data: DataService) {
+        this.products = data.products;
+    }
+
+
+
+    public products = [];
 }

@@ -3,17 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
 var core_1 = require("@angular/core");
 var ProductList = /** @class */ (function () {
-    function ProductList() {
-        this.products = [{
-                title: "First Product",
-                price: 19.99
-            }, {
-                title: "Second Product",
-                price: 29.99
-            }, {
-                title: "Third Product",
-                price: 14.99
-            }];
+    function ProductList(data) {
+        this.data = data;
+        this.products = [];
+        this.products = data.products;
     }
     ProductList = tslib_1.__decorate([
         core_1.Component({

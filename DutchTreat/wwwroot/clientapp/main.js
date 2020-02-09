@@ -67,6 +67,7 @@ var platform_browser_1 = __webpack_require__(/*! @angular/platform-browser */ ".
 var core_1 = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 var app_component_1 = __webpack_require__(/*! ./app.component */ "./ClientApp/app/app.component.ts");
 var productList_component_1 = __webpack_require__(/*! ./shop/productList.component */ "./ClientApp/app/shop/productList.component.ts");
+var dataService_1 = __webpack_require__(/*! ./shared/dataService */ "./ClientApp/app/shared/dataService.ts");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -79,13 +80,46 @@ var AppModule = /** @class */ (function () {
             imports: [
                 platform_browser_1.BrowserModule
             ],
-            providers: [],
+            providers: [
+                dataService_1.DataService
+            ],
             bootstrap: [app_component_1.AppComponent]
         })
     ], AppModule);
     return AppModule;
 }());
 exports.AppModule = AppModule;
+
+
+/***/ }),
+
+/***/ "./ClientApp/app/shared/dataService.ts":
+/*!*********************************************!*\
+  !*** ./ClientApp/app/shared/dataService.ts ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+var DataService = /** @class */ (function () {
+    function DataService() {
+        this.products = [{
+                title: "First Product",
+                price: 19.99
+            }, {
+                title: "Second Product",
+                price: 29.99
+            }, {
+                title: "Third Product",
+                price: 14.99
+            }];
+    }
+    return DataService;
+}());
+exports.DataService = DataService;
 
 
 /***/ }),
@@ -102,19 +136,16 @@ exports.AppModule = AppModule;
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 var core_1 = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var dataService_1 = __webpack_require__(/*! ../shared/dataService */ "./ClientApp/app/shared/dataService.ts");
 var ProductList = /** @class */ (function () {
-    function ProductList() {
-        this.products = [{
-                title: "First Product",
-                price: 19.99
-            }, {
-                title: "Second Product",
-                price: 29.99
-            }, {
-                title: "Third Product",
-                price: 14.99
-            }];
+    function ProductList(data) {
+        this.data = data;
+        this.products = [];
+        this.products = data.products;
     }
+    ProductList.ctorParameters = function () { return [
+        { type: dataService_1.DataService }
+    ]; };
     ProductList = tslib_1.__decorate([
         core_1.Component({
             selector: "product-list",
