@@ -68,6 +68,7 @@ var core_1 = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/c
 var http_1 = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 var app_component_1 = __webpack_require__(/*! ./app.component */ "./ClientApp/app/app.component.ts");
 var productList_component_1 = __webpack_require__(/*! ./shop/productList.component */ "./ClientApp/app/shop/productList.component.ts");
+var cart_component_1 = __webpack_require__(/*! ./shop/cart.component */ "./ClientApp/app/shop/cart.component.ts");
 var dataService_1 = __webpack_require__(/*! ./shared/dataService */ "./ClientApp/app/shared/dataService.ts");
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -76,7 +77,8 @@ var AppModule = /** @class */ (function () {
         core_1.NgModule({
             declarations: [
                 app_component_1.AppComponent,
-                productList_component_1.ProductList
+                productList_component_1.ProductList,
+                cart_component_1.Cart
             ],
             imports: [
                 platform_browser_1.BrowserModule,
@@ -131,6 +133,39 @@ var DataService = /** @class */ (function () {
     return DataService;
 }());
 exports.DataService = DataService;
+
+
+/***/ }),
+
+/***/ "./ClientApp/app/shop/cart.component.ts":
+/*!**********************************************!*\
+  !*** ./ClientApp/app/shop/cart.component.ts ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+var core_1 = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var dataService_1 = __webpack_require__(/*! ../shared/dataService */ "./ClientApp/app/shared/dataService.ts");
+var Cart = /** @class */ (function () {
+    function Cart(data) {
+        this.data = data;
+    }
+    Cart.ctorParameters = function () { return [
+        { type: dataService_1.DataService }
+    ]; };
+    Cart = tslib_1.__decorate([
+        core_1.Component({
+            selector: "the-cart",
+            template: tslib_1.__importDefault(__webpack_require__(/*! raw-loader!./cart.component.html */ "./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/shop/cart.component.html")).default
+        })
+    ], Cart);
+    return Cart;
+}());
+exports.Cart = Cart;
 
 
 /***/ }),
@@ -254,7 +289,20 @@ platform_browser_dynamic_1.platformBrowserDynamic().bootstrapModule(app_module_1
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"col-md-9\">\r\n        <h3>{{ title }}</h3>\r\n        <product-list></product-list>\r\n    </div>\r\n    <div class=\"col-md-3\">\r\n        <div class=\"card bg-light p-2\">\r\n           <h3>Cart</h3>\r\n        </div>\r\n    </div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"col-md-9\">\r\n        <h3>{{ title }}</h3>\r\n        <product-list></product-list>\r\n    </div>\r\n    <div class=\"col-md-3\">\r\n        <div class=\"card bg-light p-2\">\r\n           <the-cart></the-cart>\r\n        </div>\r\n    </div>\r\n</div>");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/shop/cart.component.html":
+/*!**************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/shop/cart.component.html ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<h3>Shopping Cart</h3>");
 
 /***/ }),
 
