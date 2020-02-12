@@ -20,7 +20,7 @@ var ProductList = /** @class */ (function () {
         core_1.Component({
             selector: "product-list",
             templateUrl: "productList.component.html",
-            styleUrls: []
+            styleUrls: ["productList.component.css"]
         })
     ], ProductList);
     return ProductList;
