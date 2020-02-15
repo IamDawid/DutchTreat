@@ -28,20 +28,20 @@ namespace DutchTreat.Data
         {
             _ctx.Database.EnsureCreated();
 
-            StoreUser user = await _userManager.FindByNameAsync("shawn@dutchtreat.com");
+            StoreUser user = await _userManager.FindByEmailAsync("dawid@dutchtreat.com");
             if (user == null)
             {
                 user = new StoreUser()
                 {
-                    FirstName = "Shawn",
-                    LastName = "Wildermuth",
-                    Email = "shawn@dutchtreat.com",
-                    UserName = "shawn@dutchtreat.com"
+                    FirstName = "Dawid",
+                    LastName = "Bialy",
+                    Email = "dawid@dutchtreat.com",
+                    UserName = "dawid@dutchtreat.com"
                 };
                 var result = await _userManager.CreateAsync(user, "P@ssw0rd!");
                 if (result != IdentityResult.Success)
                 {
-                    throw new InvalidOperationException("Could not create new user in seeder");
+                    throw new InvalidOperationException("Failed to create default user!");
                 }
             }
 
