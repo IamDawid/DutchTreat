@@ -15,9 +15,9 @@ namespace DutchTreat.Data
     {
         private readonly DutchContext _ctx;
 
-        private readonly IHostingEnvironment _hosting;
+        private readonly IWebHostEnvironment _hosting;
         private readonly UserManager<StoreUser> _userManager;
-        public DutchSeeder(DutchContext ctx, IHostingEnvironment hosting, UserManager<StoreUser> userManager)
+        public DutchSeeder(DutchContext ctx, IWebHostEnvironment hosting, UserManager<StoreUser> userManager)
         {
             _ctx = ctx;
             _hosting = hosting;
@@ -35,7 +35,7 @@ namespace DutchTreat.Data
                 {
                     FirstName = "Dawid",
                     LastName = "Bialy",
-                    Email = "dawid@dutchtreat.com",
+                    Email = "Dawid@dutchtreat.com",
                     UserName = "dawid@dutchtreat.com"
                 };
                 var result = await _userManager.CreateAsync(user, "P@ssw0rd!");

@@ -42,11 +42,13 @@ namespace DutchTreat
                cfg.UseSqlServer(_config.GetConnectionString("DutchConnectionString"));
             });
 
-            services.AddTransient<DutchSeeder>();
+
+            
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddTransient<IMailService, NullMailService>();
             services.AddControllers();
-            //support for real mail service
+            //support for real mail service placeholder
+            services.AddTransient<DutchSeeder>();
             services.AddScoped<IDutchRepository, DutchRepository>();
             services.AddMvc()
                 .AddNewtonsoftJson()
@@ -56,7 +58,7 @@ namespace DutchTreat
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             //if not in dev enviroment, use an exception handler
             if (env.IsDevelopment())
