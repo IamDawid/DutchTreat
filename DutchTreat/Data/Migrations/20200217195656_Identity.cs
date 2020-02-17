@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DutchTreat.Migrations
 {
-    public partial class SeedData : Migration
+    public partial class Identity : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,7 +12,7 @@ namespace DutchTreat.Migrations
                 keyColumn: "Id",
                 keyValue: 1,
                 column: "OrderDate",
-                value: new DateTime(2020, 2, 15, 22, 53, 20, 964, DateTimeKind.Utc).AddTicks(6717));
+                value: new DateTime(2020, 2, 17, 19, 56, 55, 861, DateTimeKind.Utc).AddTicks(172));
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -22,7 +22,7 @@ namespace DutchTreat.Migrations
                 keyColumn: "Id",
                 keyValue: 1,
                 column: "OrderDate",
-                value: new DateTime(2020, 2, 15, 22, 49, 57, 288, DateTimeKind.Utc).AddTicks(1346));
+                value: new DateTime(2020, 2, 17, 19, 42, 27, 903, DateTimeKind.Utc).AddTicks(4846));
         }
     }
 }

@@ -111,9 +111,11 @@ var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.j
 var http_1 = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 var core_1 = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 var operators_1 = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+var order_1 = __webpack_require__(/*! ./order */ "./ClientApp/app/shared/order.ts");
 var DataService = /** @class */ (function () {
     function DataService(http) {
         this.http = http;
+        this.order = new order_1.Order();
         this.products = [];
     }
     DataService.prototype.loadProducts = function () {
@@ -124,6 +126,18 @@ var DataService = /** @class */ (function () {
             return true;
         }));
     };
+    DataService.prototype.addToOrder = function (newProduct) {
+        var item = new order_1.OrderItem();
+        item.productId = newProduct.id;
+        item.productArtist = newProduct.artist;
+        item.productArtId = newProduct.artId;
+        item.productCategory = newProduct.category;
+        item.productSize = newProduct.size;
+        item.productTitle = newProduct.title;
+        item.unitPrice = newProduct.price;
+        item.quantity = 1;
+        this.order.items.push(item);
+    };
     DataService.ctorParameters = function () { return [
         { type: http_1.HttpClient }
     ]; };
@@ -133,6 +147,35 @@ var DataService = /** @class */ (function () {
     return DataService;
 }());
 exports.DataService = DataService;
+
+
+/***/ }),
+
+/***/ "./ClientApp/app/shared/order.ts":
+/*!***************************************!*\
+  !*** ./ClientApp/app/shared/order.ts ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+var Order = /** @class */ (function () {
+    function Order() {
+        this.orderDate = new Date();
+        this.items = new Array();
+    }
+    return Order;
+}());
+exports.Order = Order;
+var OrderItem = /** @class */ (function () {
+    function OrderItem() {
+    }
+    return OrderItem;
+}());
+exports.OrderItem = OrderItem;
 
 
 /***/ }),
@@ -209,6 +252,9 @@ var ProductList = /** @class */ (function () {
                 _this.products = _this.data.products;
             }
         });
+    };
+    ProductList.prototype.addProduct = function (product) {
+        this.data.addToOrder(product);
     };
     ProductList.ctorParameters = function () { return [
         { type: dataService_1.DataService }
@@ -302,7 +348,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<h3>Shopping Cart</h3>");
+/* harmony default export */ __webpack_exports__["default"] = ("<h3>Shopping Cart</h3>\r\n<div>Count: {{ data.order.items.length }}</div>");
 
 /***/ }),
 
@@ -315,7 +361,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"product-info col-md-4\" *ngFor=\"let p of products\">\r\n        <div class=\"card bg-light p-1 m-1\">\r\n            <img src=\"/img/{{ p.artId }}.jpg\" class=\"img-fluid\" [alt]=\"p.title\" />\r\n            <div class=\"product-name\">{{ p.category }} - {{ p.size }}</div>\r\n            <ul class=\"product-props\">\r\n                <li><strong>Price:</strong> {{ p.price | currency:\"GBP\":true }}</li>\r\n                <li><strong>Artist:</strong> {{ p.artist }}</li>\r\n                <li><strong>Title:</strong> {{ p.title }}</li>\r\n                <li><strong>Description:</strong> {{p.artDescription }}</li>\r\n            </ul>\r\n            <button class=\"btn btn-success\" id=\"buyButton\">Buy</button>\r\n        </div>\r\n    </div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"product-info col-md-4\" *ngFor=\"let p of products\">\r\n        <div class=\"card bg-light p-1 m-1\">\r\n            <img src=\"/img/{{ p.artId }}.jpg\" class=\"img-fluid\" [alt]=\"p.title\" />\r\n            <div class=\"product-name\">{{ p.category }} - {{ p.size }}</div>\r\n            <ul class=\"product-props\">\r\n                <li><strong>Price:</strong> {{ p.price | currency:\"GBP\":true }}</li>\r\n                <li><strong>Artist:</strong> {{ p.artist }}</li>\r\n                <li><strong>Title:</strong> {{ p.title }}</li>\r\n                <li><strong>Description:</strong> {{p.artDescription }}</li>\r\n            </ul>\r\n            <button class=\"btn btn-success\" id=\"buyButton\" (click)=\"addProduct(p)\">Buy</button>\r\n        </div>\r\n    </div>\r\n</div>");
 
 /***/ }),
 

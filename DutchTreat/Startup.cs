@@ -31,6 +31,13 @@ namespace DutchTreat
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            /*
+            services.Configure<DutchContext>(o =>
+            {
+               o.Database.Migrate();
+            });
+            */
+
             services.AddIdentity <StoreUser, IdentityRole>(cfg =>
             {
                 cfg.User.RequireUniqueEmail = true;
