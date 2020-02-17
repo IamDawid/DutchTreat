@@ -126,17 +126,23 @@ var DataService = /** @class */ (function () {
             return true;
         }));
     };
-    DataService.prototype.addToOrder = function (newProduct) {
-        var item = new order_1.OrderItem();
-        item.productId = newProduct.id;
-        item.productArtist = newProduct.artist;
-        item.productArtId = newProduct.artId;
-        item.productCategory = newProduct.category;
-        item.productSize = newProduct.size;
-        item.productTitle = newProduct.title;
-        item.unitPrice = newProduct.price;
-        item.quantity = 1;
-        this.order.items.push(item);
+    DataService.prototype.addToOrder = function (product) {
+        var item = this.order.items.find(function (i) { return i.productId == product.id; });
+        if (item) {
+            item.quantity++;
+        }
+        else {
+            item = new order_1.OrderItem();
+            item.productId = product.id;
+            item.productArtist = product.artist;
+            item.productArtId = product.artId;
+            item.productCategory = product.category;
+            item.productSize = product.size;
+            item.productTitle = product.title;
+            item.unitPrice = product.price;
+            item.quantity = 1;
+            this.order.items.push(item);
+        }
     };
     DataService.ctorParameters = function () { return [
         { type: http_1.HttpClient }
@@ -348,7 +354,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<h3>Shopping Cart</h3>\r\n<div>Count: {{ data.order.items.length }}</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<h3>Shopping Cart</h3>\r\n<div>#/Items: {{ data.order.items.length }}</div>\r\n<table class=\"table table-condensed table-hover\">\r\n   <thead>\r\n       <tr>\r\n           <td>Product</td>\r\n           <td>#</td>\r\n           <td>£</td>\r\n           <td>Total</td>\r\n       </tr>\r\n   </thead>\r\n    <tbody>\r\n        <tr *ngFor=\"let o of data.oder.item\">\r\n            <td>{{ o.productCategory }} - {{ o.productTitle }}</td>\r\n            <td>{{ o.quantity }}</td>\r\n            <td>{{ o.price | currency:\"GBP\":true }}</td>\r\n            <td>{{ (o.unitPrice * o.quantity) | currency:\"GBP\":true }}</td>\r\n        </tr>\r\n    </tbody>\r\n</table>");
 
 /***/ }),
 
@@ -361,7 +367,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"product-info col-md-4\" *ngFor=\"let p of products\">\r\n        <div class=\"card bg-light p-1 m-1\">\r\n            <img src=\"/img/{{ p.artId }}.jpg\" class=\"img-fluid\" [alt]=\"p.title\" />\r\n            <div class=\"product-name\">{{ p.category }} - {{ p.size }}</div>\r\n            <ul class=\"product-props\">\r\n                <li><strong>Price:</strong> {{ p.price | currency:\"GBP\":true }}</li>\r\n                <li><strong>Artist:</strong> {{ p.artist }}</li>\r\n                <li><strong>Title:</strong> {{ p.title }}</li>\r\n                <li><strong>Description:</strong> {{p.artDescription }}</li>\r\n            </ul>\r\n            <button class=\"btn btn-success\" id=\"buyButton\" (click)=\"addProduct(p)\">Buy</button>\r\n        </div>\r\n    </div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"product-info col-md-4\" *ngFor=\"let p of products\">\r\n        <div class=\"card bg-light p-1 m-1\">\r\n            <img src=\"/img/{{ p.artId }}.jpg\" class=\"img-fluid\" [alt]=\"p.title\" />\r\n            <div class=\"product-name\">{{ p.category }} - {{ p.size }}</div>\r\n            <ul class=\"product-props\">\r\n                <li><strong>Price:</strong> {{ p.price | currency:\"GBP\":true }}</li>\r\n                <li><strong>Artist:</strong> {{ p.artist }}</li>\r\n                <li><strong>Title:</strong> {{ p.title }}</li>\r\n                <li><strong>Description:</strong> {{p.artDescription }}</li>\r\n            </ul>\r\n            <button class=\"btn btn-success btn-sm pull-right\" id=\"buyButton\" (click)=\"addProduct(p)\">Buy</button>\r\n        </div>\r\n    </div>\r\n</div>");
 
 /***/ }),
 
