@@ -6,6 +6,7 @@ var ProductList = /** @class */ (function () {
     function ProductList(data) {
         this.data = data;
         this.products = [];
+        this.products = data.products;
     }
     ProductList.prototype.ngOnInit = function () {
         var _this = this;

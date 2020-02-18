@@ -9,11 +9,16 @@ import { Product } from '../shared/product';
 })
 
 export class ProductList implements OnInit {
+
+    public products: Product[] = [];
+
     constructor(private data: DataService) {
+
+        this.products = data.products;
     
     }
 
-    public products: Product[] = [];
+    
 
     ngOnInit(): void {
      this.data.loadProducts()

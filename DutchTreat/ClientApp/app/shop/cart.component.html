@@ -10,10 +10,10 @@
        </tr>
    </thead>
     <tbody>
-        <tr *ngFor="let o of data.oder.items">
+        <tr *ngFor="let o of data.order.items">
             <td>{{ o.productCategory }} - {{ o.productTitle }}</td>
             <td>{{ o.quantity }}</td>
-            <td>{{ o.price | currency:"GBP":true }}</td>
+            <td>{{ o.unitPrice | currency:"GBP":true }}</td>
             <td>{{ (o.unitPrice * o.quantity) | currency:"GBP":true }}</td>
         </tr>
     </tbody>
