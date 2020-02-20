@@ -69,7 +69,16 @@ var http_1 = __webpack_require__(/*! @angular/common/http */ "./node_modules/@an
 var app_component_1 = __webpack_require__(/*! ./app.component */ "./ClientApp/app/app.component.ts");
 var productList_component_1 = __webpack_require__(/*! ./shop/productList.component */ "./ClientApp/app/shop/productList.component.ts");
 var cart_component_1 = __webpack_require__(/*! ./shop/cart.component */ "./ClientApp/app/shop/cart.component.ts");
+var shop_component_1 = __webpack_require__(/*! ./shop/shop.component */ "./ClientApp/app/shop/shop.component.ts");
+var checkout_component_1 = __webpack_require__(/*! ./checkout/checkout.component */ "./ClientApp/app/checkout/checkout.component.ts");
+var login_component_1 = __webpack_require__(/*! ./login/login.component */ "./ClientApp/app/login/login.component.ts");
 var dataService_1 = __webpack_require__(/*! ./shared/dataService */ "./ClientApp/app/shared/dataService.ts");
+var router_1 = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+var routes = [
+    { path: "", component: shop_component_1.Shop },
+    { path: "checkout", component: checkout_component_1.Checkout },
+    { path: "login", component: login_component_1.Login }
+];
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -78,11 +87,18 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 app_component_1.AppComponent,
                 productList_component_1.ProductList,
-                cart_component_1.Cart
+                cart_component_1.Cart,
+                shop_component_1.Shop,
+                checkout_component_1.Checkout,
+                login_component_1.Login
             ],
             imports: [
                 platform_browser_1.BrowserModule,
-                http_1.HttpClientModule
+                http_1.HttpClientModule,
+                router_1.RouterModule.forRoot(routes, {
+                    useHash: true,
+                    enableTracing: false // for Debugging of the Routes
+                })
             ],
             providers: [
                 dataService_1.DataService
@@ -93,6 +109,85 @@ var AppModule = /** @class */ (function () {
     return AppModule;
 }());
 exports.AppModule = AppModule;
+
+
+/***/ }),
+
+/***/ "./ClientApp/app/checkout/checkout.component.css":
+/*!*******************************************************!*\
+  !*** ./ClientApp/app/checkout/checkout.component.css ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (".checkout-thumb {\n  max-width: 100px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkNsaWVudEFwcC9hcHAvY2hlY2tvdXQvY2hlY2tvdXQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGdCQUFnQjtBQUNsQiIsImZpbGUiOiJDbGllbnRBcHAvYXBwL2NoZWNrb3V0L2NoZWNrb3V0LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY2hlY2tvdXQtdGh1bWIge1xuICBtYXgtd2lkdGg6IDEwMHB4O1xufVxuIl19 */");
+
+/***/ }),
+
+/***/ "./ClientApp/app/checkout/checkout.component.ts":
+/*!******************************************************!*\
+  !*** ./ClientApp/app/checkout/checkout.component.ts ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+var core_1 = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var dataService_1 = __webpack_require__(/*! ../shared/dataService */ "./ClientApp/app/shared/dataService.ts");
+var Checkout = /** @class */ (function () {
+    function Checkout(data) {
+        this.data = data;
+    }
+    Checkout.prototype.onCheckout = function () {
+        // TODO
+        alert("Doing checkout");
+    };
+    Checkout.ctorParameters = function () { return [
+        { type: dataService_1.DataService }
+    ]; };
+    Checkout = tslib_1.__decorate([
+        core_1.Component({
+            selector: "checkout",
+            template: tslib_1.__importDefault(__webpack_require__(/*! raw-loader!./checkout.component.html */ "./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/checkout/checkout.component.html")).default,
+            styles: [tslib_1.__importDefault(__webpack_require__(/*! ./checkout.component.css */ "./ClientApp/app/checkout/checkout.component.css")).default]
+        })
+    ], Checkout);
+    return Checkout;
+}());
+exports.Checkout = Checkout;
+
+
+/***/ }),
+
+/***/ "./ClientApp/app/login/login.component.ts":
+/*!************************************************!*\
+  !*** ./ClientApp/app/login/login.component.ts ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+var core_1 = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var Login = /** @class */ (function () {
+    function Login() {
+    }
+    Login = tslib_1.__decorate([
+        core_1.Component({
+            selector: "login",
+            template: tslib_1.__importDefault(__webpack_require__(/*! raw-loader!./login.component.html */ "./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/login/login.component.html")).default
+        })
+    ], Login);
+    return Login;
+}());
+exports.Login = Login;
 
 
 /***/ }),
@@ -115,6 +210,7 @@ var order_1 = __webpack_require__(/*! ./order */ "./ClientApp/app/shared/order.t
 var DataService = /** @class */ (function () {
     function DataService(http) {
         this.http = http;
+        this.token = "";
         this.order = new order_1.Order();
         this.products = [];
     }
@@ -126,6 +222,13 @@ var DataService = /** @class */ (function () {
             return true;
         }));
     };
+    Object.defineProperty(DataService.prototype, "loginRequired", {
+        get: function () {
+            return this.token.length == 0 || this.tokenExpiration > new Date();
+        },
+        enumerable: true,
+        configurable: true
+    });
     DataService.prototype.addToOrder = function (product) {
         var item = this.order.items.find(function (i) { return i.productId == product.id; });
         if (item) {
@@ -168,11 +271,20 @@ exports.DataService = DataService;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+var _ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 var Order = /** @class */ (function () {
     function Order() {
         this.orderDate = new Date();
         this.items = new Array();
     }
+    Object.defineProperty(Order.prototype, "subtotal", {
+        get: function () {
+            return _.sum(_.map(this.items, function (i) { return i.unitPrice * i.quantity; }));
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
     return Order;
 }());
 exports.Order = Order;
@@ -199,12 +311,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 var core_1 = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 var dataService_1 = __webpack_require__(/*! ../shared/dataService */ "./ClientApp/app/shared/dataService.ts");
+var router_1 = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var Cart = /** @class */ (function () {
-    function Cart(data) {
+    function Cart(data, router) {
         this.data = data;
+        this.router = router;
     }
+    Cart.prototype.onCheckout = function () {
+        //check if the user has to log in before going to checkout
+        if (this.data.loginRequired) {
+            this.router.navigate(["login"]);
+        }
+        else {
+            this.router.navigate(["checkout"]);
+        }
+    };
     Cart.ctorParameters = function () { return [
-        { type: dataService_1.DataService }
+        { type: dataService_1.DataService },
+        { type: router_1.Router }
     ]; };
     Cart = tslib_1.__decorate([
         core_1.Component({
@@ -280,6 +404,34 @@ exports.ProductList = ProductList;
 
 /***/ }),
 
+/***/ "./ClientApp/app/shop/shop.component.ts":
+/*!**********************************************!*\
+  !*** ./ClientApp/app/shop/shop.component.ts ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+var core_1 = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var Shop = /** @class */ (function () {
+    function Shop() {
+    }
+    Shop = tslib_1.__decorate([
+        core_1.Component({
+            selector: "the-shop",
+            template: tslib_1.__importDefault(__webpack_require__(/*! raw-loader!./shop.component.html */ "./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/shop/shop.component.html")).default
+        })
+    ], Shop);
+    return Shop;
+}());
+exports.Shop = Shop;
+
+
+/***/ }),
+
 /***/ "./ClientApp/environments/environment.ts":
 /*!***********************************************!*\
   !*** ./ClientApp/environments/environment.ts ***!
@@ -342,7 +494,33 @@ platform_browser_dynamic_1.platformBrowserDynamic().bootstrapModule(app_module_1
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"col-md-9\">\r\n        <h3>{{ title }}</h3>\r\n        <product-list></product-list>\r\n    </div>\r\n    <div class=\"col-md-3\">\r\n        <div class=\"card bg-light p-2\">\r\n           <the-cart></the-cart>\r\n        </div>\r\n    </div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<router-outlet></router-outlet>");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/checkout/checkout.component.html":
+/*!**********************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/checkout/checkout.component.html ***!
+  \**********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\n  <h3>Confirm Order</h3>\n  <table class=\"table table-bordered table-hover\">\n    <tr *ngFor=\"let o of data.order.items\">\n      <td><img src=\"/img/{{ o.productArtId }}.jpg\" alt=\"o.productTitle\" class=\"img-thumbnail checkout-thumb\" /></td>\n      <td>{{ o.productCategory }}({{ o.productSize }}) - {{ o.productArtist }}: {{ o.productTitle }}</td>\n      <td>{{ o.quantity }}</td>\n      <td>{{ o.unitPrice|currency:'USD':true }}</td>\n      <td>{{ (o.unitPrice * o.quantity)|currency:'USD':true }}</td>\n    </tr>\n  </table>\n  <div class=\"col-md-4 col-md-offset-8 text-right\">\n    <table class=\"table table-condensed\">\n      <tr>\n        <td class=\"text-right\">Subtotal</td>\n        <td class=\"text-right\">{{ data.order.subtotal|currency:'USD':true }}</td>\n      </tr>\n      <tr>\n        <td class=\"text-right\">Shipping</td>\n        <td class=\"text-right\">$ 0.00</td>\n      </tr>\n      <tr>\n        <td class=\"text-right\">Total:</td>\n        <td class=\"text-right\">{{ data.order.subtotal|currency:'USD':true }}</td>\n      </tr>\n    </table>\n    <button class=\"btn btn-success\" (click)=\"onCheckout()\">Complete Purchase</button>\n    <a routerLink=\"/\" class=\"btn btn-info\">Cancel</a>\n  </div>\n\n</div>");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/login/login.component.html":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/login/login.component.html ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\n  <div class=\"col-md-4 col-md-offset-4\">\n    <form>\n      <div class=\"form-group\">\n        <label for=\"username\">Username</label>\n        <input type=\"text\" class=\"form-control\" name=\"username\" />\n      </div>\n      <div class=\"form-group\">\n        <label for=\"password\">Password</label>\n        <input type=\"password\" class=\"form-control\" name=\"password\" />\n      </div>\n      <div class=\"form-group\">\n        <input type=\"submit\" class=\"btn btn-success\" value=\"Login\" />\n        <a href=\"#\" class=\"btn btn-default\">Cancel</a>\n      </div>\n    </form>\n  </div>\n</div>");
 
 /***/ }),
 
@@ -355,7 +533,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<h3>Shopping Cart</h3>\r\n<div>#/Items: {{ data.order.items.length }}</div>\r\n<table class=\"table table-condensed table-hover\">\r\n   <thead>\r\n       <tr>\r\n           <td>Product</td>\r\n           <td>#</td>\r\n           <td>£</td>\r\n           <td>Total</td>\r\n       </tr>\r\n   </thead>\r\n    <tbody>\r\n        <tr *ngFor=\"let o of data.order.items\">\r\n            <td>{{ o.productCategory }} - {{ o.productTitle }}</td>\r\n            <td>{{ o.quantity }}</td>\r\n            <td>{{ o.unitPrice | currency:\"GBP\":true }}</td>\r\n            <td>{{ (o.unitPrice * o.quantity) | currency:\"GBP\":true }}</td>\r\n        </tr>\r\n    </tbody>\r\n</table>");
+/* harmony default export */ __webpack_exports__["default"] = ("<h3>Shopping Cart</h3>\r\n<div>#/Items: {{ data.order.items.length }}</div>\r\n<div>Subtotal: {{ data.order.subtotal }}</div>\r\n<table class=\"table table-condensed table-hover\">\r\n   <thead>\r\n       <tr>\r\n           <td>Product</td>\r\n           <td>#</td>\r\n           <td>£</td>\r\n           <td>Total</td>\r\n       </tr>\r\n   </thead>\r\n    <tbody>\r\n        <tr *ngFor=\"let o of data.order.items\">\r\n            <td>{{ o.productCategory }} - {{ o.productTitle }}</td>\r\n            <td>{{ o.quantity }}</td>\r\n            <td>{{ o.unitPrice | currency:\"GBP\":true }}</td>\r\n            <td>{{ (o.unitPrice * o.quantity) | currency:\"GBP\":true }}</td>\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n<button class=\"btn btn-success\" *ngIf=\"data.order.items.length > 0\" (click)=\"onCheckout()\">Checkout</button>");
 
 /***/ }),
 
@@ -369,6 +547,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"product-info col-md-4\" *ngFor=\"let p of products\">\r\n        <div class=\"card bg-light p-1 m-1\">\r\n            <img src=\"/img/{{ p.artId }}.jpg\" class=\"img-fluid\" [alt]=\"p.title\" />\r\n            <div class=\"product-name\">{{ p.category }} - {{ p.size }}</div>\r\n            <ul class=\"product-props\">\r\n                <li><strong>Price:</strong> {{ p.price | currency:\"GBP\":true }}</li>\r\n                <li><strong>Artist:</strong> {{ p.artist }}</li>\r\n                <li><strong>Title:</strong> {{ p.title }}</li>\r\n                <li><strong>Description:</strong> {{ p.artDescription }}</li>\r\n            </ul>\r\n            <button class=\"btn btn-success btn-sm pull-right\" id=\"buyButton\" (click)=\"addProduct(p)\">Buy</button>\r\n        </div>\r\n    </div>\r\n</div>");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/shop/shop.component.html":
+/*!**************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/shop/shop.component.html ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"col-md-9\">\r\n        <h3>{{ title | currency:\"GBP\":true }}</h3>\r\n        <product-list></product-list>\r\n    </div>\r\n    <div class=\"col-md-3\">\r\n        <div class=\"card bg-light p-2\">\r\n            <the-cart></the-cart>\r\n        </div>\r\n    </div>\r\n</div>");
 
 /***/ }),
 
