@@ -11,6 +11,7 @@ import { Login } from './login/login.component';
 import { DataService } from './shared/dataService';
 
 import { RouterModule } from "@angular/router";
+import { FormsModule } from "@angular/forms";
 import { from } from 'rxjs';
 
 let routes = [
@@ -31,6 +32,7 @@ let routes = [
   imports: [
       BrowserModule,
       HttpClientModule,
+      FormsModule,
       RouterModule.forRoot(routes, {
           useHash: true,
           enableTracing: false // for Debugging of the Routes
