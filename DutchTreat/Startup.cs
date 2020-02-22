@@ -16,6 +16,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace DutchTreat
 {
@@ -43,6 +45,16 @@ namespace DutchTreat
                 cfg.User.RequireUniqueEmail = true;
             })
                 .AddEntityFrameworkStores<DutchContext>();
+
+            services.AddAuthentication().AddCookie().AddJwtBearer(
+                cfg =>
+                cfg.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidIssuer = _config["Tokens:Issuer"],
+                    ValidAudience = _config["Tokens:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]))
+                });
+
 
             services.AddDbContext<DutchContext>(cfg =>
             {

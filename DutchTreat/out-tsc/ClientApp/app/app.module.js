@@ -12,6 +12,7 @@ var checkout_component_1 = require("./checkout/checkout.component");
 var login_component_1 = require("./login/login.component");
 var dataService_1 = require("./shared/dataService");
 var router_1 = require("@angular/router");
+var forms_1 = require("@angular/forms");
 var routes = [
     { path: "", component: shop_component_1.Shop },
     { path: "checkout", component: checkout_component_1.Checkout },
@@ -33,6 +34,7 @@ var AppModule = /** @class */ (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 http_1.HttpClientModule,
+                forms_1.FormsModule,
                 router_1.RouterModule.forRoot(routes, {
                     useHash: true,
                     enableTracing: false // for Debugging of the Routes
