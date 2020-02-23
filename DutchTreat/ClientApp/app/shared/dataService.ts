@@ -1,7 +1,7 @@
 ﻿import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, from } from 'rxjs'
-import { map } from 'rxjs/operators';
+import { map } from "rxjs/operators";
 import { Product } from './product';
 import { Order, OrderItem } from "./order";
 
@@ -28,6 +28,16 @@ export class DataService {
 
     public get loginRequired(): boolean {
         return this.token.length == 0 || this.tokenExpiration > new Date();
+    }
+
+    login(creds): Observable<boolean> {
+        return this.http
+            .post("/account/createtoken", creds)
+            .pipe(map((data: any) => {
+                this.token = data.token;
+                this.tokenExpiration = data.expiration;
+                return true;
+            }));
     }
 
     public addToOrder(product: Product) {

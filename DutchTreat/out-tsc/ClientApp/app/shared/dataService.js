@@ -26,6 +26,16 @@ var DataService = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    DataService.prototype.login = function (creds) {
+        var _this = this;
+        return this.http
+            .post("/account/createtoken", creds)
+            .pipe(operators_1.map(function (data) {
+            _this.token = data.token;
+            _this.tokenExpiration = data.expiration;
+            return true;
+        }));
+    };
     DataService.prototype.addToOrder = function (product) {
         var item = this.order.items.find(function (i) { return i.productId == product.id; });
         if (item) {
