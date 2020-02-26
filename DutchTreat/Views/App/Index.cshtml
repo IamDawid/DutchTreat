@@ -2,7 +2,7 @@
     ViewBag.Title = "Home Page";
 }
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-4 offset-md-3">
             <div class="product-info">
                 <img src="~/img/VanGogh.jpg" />
                 <h3>Mug</h3>
@@ -12,53 +12,10 @@
                     <li>Title:</li>
                     <li>Description: Self-portrait</li>
                 </ul>
-                <button class="btn btn-success" id="buyButton">Buy</button>
-            </div>
-
-            <div id="theForm">
-                <form>
-                    <label>Your name:</label>
-                    <br />
-                    <input />
-                    <br />
-                    <label>Email:</label>
-                    <br />
-                    <input type="email" />
-                    <br />
-                    <label>Subject:</label>
-                    <br />
-                    <input type="text" />
-                    <br />
-                    <label>Message:</label>
-                    <br />
-                    <textarea rows="4"></textarea>
-                    <br />
-                    <input type="submit" value="Send Message" />
-                </form>
-            </div>
-
-            <div>
-                <div id="loginToggle">Login</div>
-                <form class="popup-form">
-                    <div>
-                        <label>Username</label>
-                        <input />
-                    </div>
-                    <div>
-                        <label>Password</label>
-                        <input type="password" />
-                    </div>
-                    <div>
-                        <input type="checkbox" />
-                        <label>Remember Me?</label>
-                    </div>
-                    <div>
-                        <input type="submit" value="Login" />
-                    </div>
-                </form>
-            </div>
+                <button onclick="location.href='@Url.Action("Shop", "App")'" id="buyButton" class="btn btn-success">Start shopping!</button>
+            </div>      
         </div>
-        <div class="col-md-3">
-            <p>lorem kurwa ipsum</p>
+        <div class="col-md-3 col-md-offset-4">
+            <p>This is an amazing app which allows you to buy some imaginary items with paintings of legendary Dutch artists.</p>
         </div>
     </div>

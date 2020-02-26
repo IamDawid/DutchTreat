@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
+var http_1 = require("@angular/common/http");
 var core_1 = require("@angular/core");
 var operators_1 = require("rxjs/operators");
 var order_1 = require("./order");
@@ -33,6 +34,21 @@ var DataService = /** @class */ (function () {
             .pipe(operators_1.map(function (data) {
             _this.token = data.token;
             _this.tokenExpiration = data.expiration;
+            return true;
+        }));
+    };
+    DataService.prototype.checkout = function () {
+        var _this = this;
+        //including the order number to avoid ViewModel validation errors
+        if (this.order.orderNumber) {
+            this.order.orderNumber = this.order.orderDate.getFullYear().toString() + this.order.orderDate.getTime().toString();
+        }
+        //including a token in the HttpHeader to avoid error 401
+        return this.http.post("/api/orders", this.order, {
+            headers: new http_1.HttpHeaders().set("Authorization", "Bearer " + this.token)
+        })
+            .pipe(operators_1.map(function (response) {
+            _this.order = new order_1.Order();
             return true;
         }));
     };
