@@ -8,8 +8,8 @@ var Login = /** @class */ (function () {
         this.router = router;
         this.errorMessage = "";
         this.creds = {
-            username: "",
-            password: ""
+            UserName: "",
+            Password: ""
         };
     }
     Login.prototype.onLogin = function () {
@@ -18,7 +18,7 @@ var Login = /** @class */ (function () {
             .subscribe(function (success) {
             if (success) {
                 if (_this.data.order.items.length == 0) {
-                    _this.router.navigate(["checkout"]);
+                    _this.router.navigate(["/"]);
                 }
                 else {
                     _this.router.navigate(["checkout"]);

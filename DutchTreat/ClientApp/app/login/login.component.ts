@@ -16,8 +16,8 @@ export class Login {
 
     public creds = {
 
-        username: "",
-        password: ""
+        UserName: "",
+        Password: ""
     };
 
     onLogin() {
@@ -25,7 +25,7 @@ export class Login {
             .subscribe(success => {
                 if (success) {
                     if (this.data.order.items.length == 0) {
-                        this.router.navigate(["checkout"]);
+                        this.router.navigate(["/"]);
                     } else {
                         this.router.navigate(["checkout"]);
                     }

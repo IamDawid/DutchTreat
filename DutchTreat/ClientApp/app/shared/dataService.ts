@@ -5,6 +5,8 @@ import { map } from "rxjs/operators";
 import { Product } from './product';
 import { Order, OrderItem } from "./order";
 
+import 'rxjs/add/operator/map';
+
 @Injectable()
 export class DataService {
 
@@ -17,7 +19,7 @@ export class DataService {
 
     public products: Product[] = [];
 
-    loadProducts(): Observable<boolean> {
+    public loadProducts(): Observable<boolean> {
        return this.http.get("/api/products")
             .pipe(
                 map((data: any[]) => {
@@ -30,14 +32,14 @@ export class DataService {
         return this.token.length == 0 || this.tokenExpiration > new Date();
     }
 
-    login(creds): Observable<boolean> {
+    public login(creds): Observable<boolean> {
         return this.http
             .post("/account/createtoken", creds)
-            .pipe(map((data: any) => {
+            .map((data: any) => {
                 this.token = data.token;
                 this.tokenExpiration = data.expiration;
                 return true;
-            }));
+            });
     }
 
     public checkout() {
@@ -49,10 +51,10 @@ export class DataService {
         return this.http.post("/api/orders", this.order, {
             headers: new HttpHeaders().set("Authorization", "Bearer " + this.token)
         })
-            .pipe(map(response => {
+            .map(response => {
                 this.order = new Order();
                 return true;
-            }));
+            });
     }
 
     public addToOrder(product: Product) {

@@ -195,8 +195,8 @@ var Login = /** @class */ (function () {
         this.router = router;
         this.errorMessage = "";
         this.creds = {
-            username: "",
-            password: ""
+            UserName: "",
+            Password: ""
         };
     }
     Login.prototype.onLogin = function () {
@@ -205,7 +205,7 @@ var Login = /** @class */ (function () {
             .subscribe(function (success) {
             if (success) {
                 if (_this.data.order.items.length == 0) {
-                    _this.router.navigate(["checkout"]);
+                    _this.router.navigate(["/"]);
                 }
                 else {
                     _this.router.navigate(["checkout"]);
@@ -245,6 +245,7 @@ var http_1 = __webpack_require__(/*! @angular/common/http */ "./node_modules/@an
 var core_1 = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 var operators_1 = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 var order_1 = __webpack_require__(/*! ./order */ "./ClientApp/app/shared/order.ts");
+__webpack_require__(/*! rxjs/add/operator/map */ "./node_modules/rxjs-compat/_esm5/add/operator/map.js");
 var DataService = /** @class */ (function () {
     function DataService(http) {
         this.http = http;
@@ -271,11 +272,11 @@ var DataService = /** @class */ (function () {
         var _this = this;
         return this.http
             .post("/account/createtoken", creds)
-            .pipe(operators_1.map(function (data) {
+            .map(function (data) {
             _this.token = data.token;
             _this.tokenExpiration = data.expiration;
             return true;
-        }));
+        });
     };
     DataService.prototype.checkout = function () {
         var _this = this;
@@ -287,10 +288,10 @@ var DataService = /** @class */ (function () {
         return this.http.post("/api/orders", this.order, {
             headers: new http_1.HttpHeaders().set("Authorization", "Bearer " + this.token)
         })
-            .pipe(operators_1.map(function (response) {
+            .map(function (response) {
             _this.order = new order_1.Order();
             return true;
-        }));
+        });
     };
     DataService.prototype.addToOrder = function (product) {
         var item = this.order.items.find(function (i) { return i.productId == product.id; });
@@ -583,7 +584,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\n  <div class=\"col-md-4 offset-md-4\">\n      <div *ngIf=\"errorMessage\" class=\"alert alert-warning\"> {{errorMessage }}</div>\n    <form (submit)=\"onLogin()\" #theForm=\"ngForm\" novalidate>\n      <div class=\"form-group\">\n        <label for=\"username\">Username</label>\n        <input type=\"text\" class=\"form-control\" name=\"username\" [(ngModel)]=\"creds.username\" #username=\"ngModel\" required/>\n          <div class=\"text-danger\" *ngIf=\"username.touched && username.invalid && username.errors.required\">Username is required!</div>\n      </div>\n      <div class=\"form-group\">\r\n          <label for=\"password\">Password</label>\r\n          <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"creds.password\" #password=\"ngModel\" required />\r\n          <div class=\"text-danger\" *ngIf=\"password.touched && password.invalid && password.errors.required\">Password is required!</div>\r\n      </div>\n      <div class=\"form-group\">\n        <input type=\"submit\" class=\"btn btn-success\" value=\"Login\" [disabled]=\"theForm.invalid\"/>\n        <a routerLink=\"/\" class=\"btn btn-default\">Cancel</a>\n      </div>\n    </form>\n  </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\n  <div class=\"col-md-4 offset-md-4\">\n      <div *ngIf=\"errorMessage\" class=\"alert alert-warning\">{{errorMessage }}</div>\n    <form (submit)=\"onLogin()\" #theForm=\"ngForm\" novalidate>\n      <div class=\"form-group\">\n        <label for=\"username\">Username</label>\n        <input type=\"text\" class=\"form-control\" name=\"username\" [(ngModel)]=\"creds.UserName\" #username=\"ngModel\" required/>\n          <div class=\"text-danger\" *ngIf=\"username.touched && username.invalid && username.errors.required\">Username is required!</div>\n      </div>\n      <div class=\"form-group\">\r\n          <label for=\"password\">Password</label>\r\n          <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"creds.Password\" #password=\"ngModel\" required />\r\n          <div class=\"text-danger\" *ngIf=\"password.touched && password.invalid && password.errors.required\">Password is required!</div>\r\n      </div>\n      <div class=\"form-group\">\n        <input type=\"submit\" class=\"btn btn-success\" value=\"Login\" [disabled]=\"theForm.invalid\"/>\n        <a routerLink=\"/\" class=\"btn btn-default\">Cancel</a>\n      </div>\n    </form>\n  </div>\n</div>");
 
 /***/ }),
 

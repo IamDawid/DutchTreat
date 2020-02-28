@@ -5,6 +5,7 @@ var http_1 = require("@angular/common/http");
 var core_1 = require("@angular/core");
 var operators_1 = require("rxjs/operators");
 var order_1 = require("./order");
+require("rxjs/add/operator/map");
 var DataService = /** @class */ (function () {
     function DataService(http) {
         this.http = http;
@@ -31,11 +32,11 @@ var DataService = /** @class */ (function () {
         var _this = this;
         return this.http
             .post("/account/createtoken", creds)
-            .pipe(operators_1.map(function (data) {
+            .map(function (data) {
             _this.token = data.token;
             _this.tokenExpiration = data.expiration;
             return true;
-        }));
+        });
     };
     DataService.prototype.checkout = function () {
         var _this = this;
@@ -47,10 +48,10 @@ var DataService = /** @class */ (function () {
         return this.http.post("/api/orders", this.order, {
             headers: new http_1.HttpHeaders().set("Authorization", "Bearer " + this.token)
         })
-            .pipe(operators_1.map(function (response) {
+            .map(function (response) {
             _this.order = new order_1.Order();
             return true;
-        }));
+        });
     };
     DataService.prototype.addToOrder = function (product) {
         var item = this.order.items.find(function (i) { return i.productId == product.id; });
