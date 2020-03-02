@@ -4,8 +4,13 @@
   },
   "Logging": {
     "LogLevel": {
-      "Default":  "Information",
-      "Microsoft": "Warning" 
+      "Default": "Information",
+      "Microsoft": "Warning"
     }
+  },
+  "Tokens": {
+    "Key": "asasdggwphiujklmaodfoiwujusdflolz;",
+    "Issuer": "localhost",
+    "Audience": "dutchtreat.com"
   }
 }
