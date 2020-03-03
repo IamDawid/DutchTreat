@@ -2,12 +2,13 @@
 var uglify = require("gulp-uglify");
 var concat = require("gulp-concat");
 
-gulp.task("minify", function () {
-    return gulp.src("wwwroot/js/**/*.js")
+gulp.task("minify", function (done) {
+         gulp.src("wwwroot/js/**/*.js")
         .pipe(uglify())
         .pipe(concat("dutchtreat.min.js"))
         .pipe(gulp.dest("wwwroot/dist"));
+    done();
 
 })
 
-gulp.task('default', ["minify"]);
+gulp.task('default', gulp.series("minify"));
